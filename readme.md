@@ -36,8 +36,11 @@ data/raw/ppi_edges.csv
 - split into train / validation / test
 ### output
 data/processed/
+
 train_edges.csv
+
 valid_edges.csv
+
 test_edges.csv
 ### run
 ``` bash scripts/prepare_data.sh ```
