@@ -21,6 +21,7 @@ these predictions are then used to guide a learning-augmented algorithm.
 ## pipeline
 
 the full pipeline consists of 4 stages:
+
 raw graph → dataset → model → predictions → laa evaluation
 
 ---
@@ -63,7 +64,10 @@ each edge is converted into a sequence:
 the transformer uses self-attention to detect shared neighbors, which correspond to triangles.
 
 ### run
+
 ``` python -m triangle_oracle.cli.train_transformer_cli ```
+
+---
 
 ### 3. prediction generation
 
@@ -80,6 +84,8 @@ these files contain:
 ### run
 ```bash scripts/predict.sh ```
 
+---
+
 ### 4. learning-augmented evaluation
 predictions are used to guide triangle counting:
 
@@ -93,33 +99,7 @@ predictions are used to guide triangle counting:
 ### run
 ``` bash scripts/eval_laa.sh ```
 
-### project structure
-triangle_oracle/
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── outputs/
-│   ├── models/
-│   ├── predictions/
-│   └── eval/
-│
-├── scripts/
-│   ├── prepare_data.sh
-│   ├── train_mlp.sh
-│   ├── predict.sh
-│   └── eval_laa.sh
-│
-├── src/triangle_oracle/
-│   ├── data/        # dataset + feature construction
-│   ├── models/      # mlp + transformer models
-│   ├── training/    # training loops + datasets
-│   ├── laa/         # evaluation logic
-│   ├── utils/       # helpers (metrics, io, seed)
-│   └── cli/         # command-line interfaces
-│
-├── requirements.txt
-└── README.md
+---
 
 ### models
 mlp oracle
@@ -131,16 +111,24 @@ transformer oracle
 - tokenizes graph structure into sequences
 - applies bidirectional self-attention
 captures structural patterns such as shared neighbors
+
+---
  
 ### important:
 the oracle does not need perfect predictions, it only needs to rank edges effectively
 
+---
+
 ### setup
 1. create virtual environment
+
 ``` python -m venv .venv ```
-``` source .venv/bin/activate ```
+``` source .venv/bin/activate ``
+`
 2. install dependencies
 ``` pip install -r requirements.txt ```
+
+---
 
 ### full pipeline run
 run everything step by step:
@@ -150,7 +138,11 @@ run everything step by step:
 ``` bash scripts/predict.sh ```
 ``` bash scripts/eval_laa.sh ```
 
+---
+
 ### author
 yashi bajpai
+
 virginia tech '29
+
 this project was made through the FY-FURF research program, in collaboration with Virginia Tech professor Dr. Ali Vakilian 
