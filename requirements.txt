@@ -1,0 +1,8 @@
+numpy<2
+pandas
+scikit-learn
+networkx
+pyyaml
+tqdm
+matplotlib
+torch

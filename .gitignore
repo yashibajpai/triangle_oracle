@@ -1,0 +1,50 @@
+# =========================
+# python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# virtual env
+# =========================
+.venv/
+venv/
+env/
+
+# =========================
+# environment files
+# =========================
+.env
+
+# =========================
+# vscode
+# =========================
+.vscode/*
+!.vscode/launch.json
+
+# =========================
+# mac
+# =========================
+.DS_Store
+
+# =========================
+# data and outputs
+# =========================
+data/raw/*
+data/interim/*
+data/processed/*
+outputs/
+
+# keep folder structure
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!outputs/.gitkeep
+
+# =========================
+# logs and temp files
+# =========================
+*.log
+*.tmp

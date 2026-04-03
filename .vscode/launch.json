@@ -1,0 +1,62 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "name": "Prepare Data",
+      "type": "python",
+      "request": "launch",
+      "module": "triangle_oracle.cli.prepare_data_cli",
+      "args": [
+        "--input_csv", "data/raw/ppi_edges.csv",
+        "--output_dir", "data/processed"
+      ],
+      "console": "integratedTerminal"
+    },
+
+    {
+      "name": "Train Model",
+      "type": "python",
+      "request": "launch",
+      "module": "triangle_oracle.cli.train_cli",
+      "args": [
+        "--train_csv", "data/processed/train_edges.csv",
+        "--valid_csv", "data/processed/valid_edges.csv",
+        "--test_csv", "data/processed/test_edges.csv",
+        "--model_dir", "outputs/models/run1",
+        "--prediction_dir", "outputs/predictions/run1"
+      ],
+      "console": "integratedTerminal"
+    },
+
+    {
+      "name": "Predict",
+      "type": "python",
+      "request": "launch",
+      "module": "triangle_oracle.cli.predict_cli",
+      "args": [
+        "--checkpoint_path", "outputs/models/run1/best_model.pt",
+        "--valid_csv", "data/processed/valid_edges.csv",
+        "--test_csv", "data/processed/test_edges.csv",
+        "--output_path", "outputs/predictions/run1/predictions.npz"
+      ],
+      "console": "integratedTerminal"
+    },
+
+    {
+      "name": "Evaluate Oracle",
+      "type": "python",
+      "request": "launch",
+      "module": "triangle_oracle.cli.eval_cli",
+      "args": [
+        "--valid_csv", "data/processed/valid_edges.csv",
+        "--test_csv", "data/processed/test_edges.csv",
+        "--prediction_npz", "outputs/predictions/run1/predictions.npz",
+        "--output_json", "outputs/eval/run1.json",
+        "--cutoff_grid", "0", "1", "2", "3", "5", "10"
+      ],
+      "console": "integratedTerminal"
+    }
+
+  ]
+}
